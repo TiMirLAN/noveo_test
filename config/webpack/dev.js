@@ -1,0 +1,33 @@
+import path from 'path'
+
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+
+import {
+  ROOT_PATH,
+  SOURCE_PATH,
+  BUILD_PATH,
+} from '../defaults'
+
+
+export default {
+  entry: path.join(SOURCE_PATH, 'index.js'),
+  output: {
+    path: BUILD_PATH,
+    filename: 'app.js',
+  },
+  resolve: {
+    extensions: [
+      '.js',
+    ],
+    modules: [
+      'node_modules',
+      SOURCE_PATH,
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin(),
+  ],
+  devServer: {
+    port: 8080,
+  }
+}
