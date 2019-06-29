@@ -1,9 +1,9 @@
 import {
   combineReducers
-} from 'redux';
+} from 'redux'
 
 export default combineReducers({
   test: (state, action) => {
-    return {};
+    return {}
   }
-});
+})

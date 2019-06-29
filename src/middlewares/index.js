@@ -4,4 +4,3 @@ import ReduxThunk from 'redux-thunk'
 export default applyMiddleware(
   ReduxThunk
 )
-
