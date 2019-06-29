@@ -6,6 +6,7 @@ import {
   ROOT_PATH,
   SOURCE_PATH,
   BUILD_PATH,
+  TEMPLATES_PATH,
 } from '../defaults'
 
 
@@ -14,6 +15,16 @@ export default {
   output: {
     path: BUILD_PATH,
     filename: 'app.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+        }
+      },
+    ],
   },
   resolve: {
     extensions: [
@@ -25,7 +36,9 @@ export default {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.join(TEMPLATES_PATH, 'app.html'),
+    }),
   ],
   devServer: {
     port: 8080,
