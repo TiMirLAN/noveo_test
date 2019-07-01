@@ -12,7 +12,8 @@ export default {
   entry: path.join(SOURCE_PATH, 'index.js'),
   output: {
     path: BUILD_PATH,
-    filename: 'app.js'
+    filename: 'app.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -21,12 +22,24 @@ export default {
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader/url'
+          },
+          {
+            loader: 'file-loader'
+          },
+        ]
       }
     ]
   },
   resolve: {
     extensions: [
-      '.js'
+      '.js',
+      '.css'
     ],
     modules: [
       'node_modules',
@@ -35,10 +48,11 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(TEMPLATES_PATH, 'app.html')
+      template: path.join(TEMPLATES_PATH, 'app.html'),
     })
   ],
   devServer: {
-    port: 8080
+    port: 8080,
+    historyApiFallback: true
   }
 }
