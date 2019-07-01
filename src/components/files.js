@@ -22,7 +22,7 @@ export default class Fiels extends React.PureComponent {
       push: PropTypes.func.isRequired
     })
   }
-  path = ''
+  path = null
 
   render () {
     const {
@@ -57,9 +57,9 @@ export default class Fiels extends React.PureComponent {
       )
     }
 
-    return chunk(files,3).map(row => (
-      <Row>{row.map(file => (
-        <Col xs={12} md={4}>
+    return chunk(files,3).map((row, index) => (
+      <Row key={index}>{row.map(file => (
+        <Col xs={12} md={4} key={file.path}>
           <FileItem {...file}/>
         </Col>
       ))}</Row>
