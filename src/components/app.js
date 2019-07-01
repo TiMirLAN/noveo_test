@@ -6,7 +6,7 @@ import Auth from 'containers/auth'
 import Files from 'containers/files'
 
 const App = () => (
-  <Container>
+  <Container fluid className="h-100">
     <BrowserRouter>
       <Route path='/' component={Auth} exact/>
       <Route path='/files/:path*' component={Files}/>

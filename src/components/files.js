@@ -22,11 +22,9 @@ export default class Fiels extends React.PureComponent {
 
     if (isLoading) {
       return (
-        <Row>
-          <Col>
-            <Spinner animation="border"/>
-          </Col>
-        </Row>
+        <div className="h-100 d-flex align-items-center justify-content-center">
+          <Spinner animation="border" className="align-middle"/>
+        </div>
       )
     }
 
