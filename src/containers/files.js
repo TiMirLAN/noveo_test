@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import Files from 'components/files'
 import { ls } from 'actions/yandex_api'
 
-const mapStateToProps = ({files: {items, isLoading}}) => ({
+const mapStateToProps = ({files: {items, isLoading}, auth: { token }}) => ({
+  isAuthenticated: token != undefined,
   files: items,
-  isLoading
+  isLoading,
 })
 
 const mapDispatchToProps = {

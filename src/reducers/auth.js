@@ -1,8 +1,8 @@
 import { SET_TOKEN } from 'actions/auth'
-import { DEBUG_TOKEN } from '../../config/defaults'
+import { getSavedToken } from 'utils/auth'
 
 const DEFAULT_STATE = {
-  token: DEBUG_TOKEN
+  token: getSavedToken()
 }
 
 export default (state = DEFAULT_STATE, action) => {

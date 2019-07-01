@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Spinner from 'react-bootstrap/Spinner'
@@ -17,6 +16,10 @@ export default class Fiels extends React.PureComponent {
       params: PropTypes.shape({
         path: PropTypes.string
       })
+    }),
+    history: PropTypes.shape({
+      replace: PropTypes.func.isRequired,
+      push: PropTypes.func.isRequired
     })
   }
   path = ''
@@ -25,18 +28,23 @@ export default class Fiels extends React.PureComponent {
     const {
       files,
       isLoading,
+      isAuthenticated,
       ls,
       match: {
         params: {
           path = ''
         }
-      }
+      },
+      history
     } = this.props
-    const fullPath = `/${path}`
 
-    if (this.path !== fullPath) {
-      ls(fullPath)
-      this.path = fullPath
+    if(!isAuthenticated) {
+      history.push('/')
+    }
+
+    if (this.path !== path) {
+      ls(`/${path}`)
+      this.path = path
     }
 
     if(isLoading) {
