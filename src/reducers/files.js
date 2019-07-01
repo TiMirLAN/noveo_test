@@ -1,7 +1,7 @@
 import { SET_LOADING, SET_FILES } from 'actions/files'
 
 const DEFAULT_STATE = {
-  isLoading: null,
+  isLoading: false,
   items: []
 }
 

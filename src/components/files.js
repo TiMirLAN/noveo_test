@@ -1,28 +1,48 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const Files = ({
-  files,
-  isLoading,
-  ls,
-  match: {
-    params: {
-      path = ''
+import FileItem from './file_item'
+
+export default class Fiels extends React.PureComponent {
+  static propTypes = {
+    files: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    ls: PropTypes.func.isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        path: PropTypes.string
+      })
+    })
+  }
+  path = ''
+
+  render () {
+    const {
+      files,
+      isLoading,
+      ls,
+      match: {
+        params: {
+          path = ''
+        }
+      }
+    } = this.props
+    const fullPath = `/${path}`
+    console.log(this.path, fullPath)
+
+    if (this.path !== fullPath) {
+      ls(fullPath)
+      this.path = fullPath
     }
-  }
-}) => {
-  const fullPath = `/${path}`
 
-  if (isLoading == null) {
-    ls(fullPath)
-  }
+    if(isLoading) {
+      return (<div>Loading...</div>)
+    }
 
-  if(isLoading) {
-    return (<div>Loading...</div>)
+    return (
+      <div>{
+        files.map(f => <FileItem key={f.path} {...f}/>)
+      }</div>
+    )
   }
-
-  return (
-    <div>{JSON.stringify(files, null, 2)}</div>
-  )
 }
-
-export default Files
