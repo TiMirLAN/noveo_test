@@ -11,7 +11,19 @@ const mapDispatchToProps = {
   setToken
 }
 
+function mergeProps (stateProps, dispatchProps, ownProps) {
+  if (stateProps.token) {
+    setTimeout(() => { ownProps.history.push('/files/') })
+  }
+  return {
+    isAuthorized: !!stateProps.token,
+    ...dispatchProps
+  }
+}
+
+
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  mergeProps
 )(Auth)

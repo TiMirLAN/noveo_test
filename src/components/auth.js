@@ -11,23 +11,15 @@ import { saveAuth } from 'utils/auth'
 
 export default class Auth extends React.PureComponent {
   static propTypes = {
-    token: PropTypes.string,
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired
-    }),
-    setToken: PropTypes.func.isRequired
+    setToken: PropTypes.func.isRequired,
+    isAuthorized: PropTypes.bool.isRequired
   }
   token = null
 
   render () {
-    const {
-      token,
-      setToken,
-      history
-    } = this.props
+    const { setToken, isAuthorized } = this.props
 
-    if (token) {
-      history.push('/files/')
+    if (isAuthorized) {
       return null
     }
 
@@ -58,8 +50,8 @@ export default class Auth extends React.PureComponent {
                 <Button
                   variant="outline-secondary"
                   onClick={() => {
-                    setToken(this.token)
                     saveAuth(this.token)
+                    setToken(this.token)
                   }}
                 >OK</Button>
               </InputGroup.Append>
