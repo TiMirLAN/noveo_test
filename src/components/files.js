@@ -10,43 +10,15 @@ import FileItem from './file_item'
 export default class Fiels extends React.PureComponent {
   static propTypes = {
     files: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    isLoading: PropTypes.bool.isRequired,
-    isAuthenticated: PropTypes.bool.isRequired,
-    ls: PropTypes.func.isRequired,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        path: PropTypes.string
-      })
-    }),
-    history: PropTypes.shape({
-      replace: PropTypes.func.isRequired,
-      push: PropTypes.func.isRequired
-    })
+    isLoading: PropTypes.bool.isRequired
   }
   path = null
 
   render () {
     const {
       files,
-      isLoading,
-      isAuthenticated,
-      ls,
-      match: {
-        params: {
-          path = ''
-        }
-      },
-      history
+      isLoading
     } = this.props
-
-    if (!isAuthenticated) {
-      history.push('/')
-    }
-
-    if (this.path !== path) {
-      ls(`/${path}`)
-      this.path = path
-    }
 
     if (isLoading) {
       return (

@@ -9,7 +9,7 @@ const App = () => (
   <Container>
     <BrowserRouter>
       <Route path='/' component={Auth} exact/>
-      <Route path='/files/:path?' component={Files}/>
+      <Route path='/files/:path*' component={Files}/>
     </BrowserRouter>
   </Container>
 )

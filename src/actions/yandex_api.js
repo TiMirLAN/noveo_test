@@ -16,7 +16,8 @@ const queryAPI = async (path, queryParams) => {
 export const ls = (path) => async (dispatch) => {
   dispatch(setLoading())
   dispatch(setFiles())
-  const data = await queryAPI('disk/resources', { path })
+  const { _embedded: { items } } = await queryAPI('disk/resources', { path })
   dispatch(setLoading(false))
-  dispatch(setFiles(data._embedded.items))
+  dispatch(setFiles(items))
+  return items
 }
