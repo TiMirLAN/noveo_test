@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Auth from 'components/auth'
 import { setToken } from 'actions/auth'
 
-const mapStateToProps = ({auth: { token }}) => ({
+const mapStateToProps = ({ auth: { token } }) => ({
   token
 })
 

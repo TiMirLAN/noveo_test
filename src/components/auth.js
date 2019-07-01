@@ -14,11 +14,12 @@ export default class Auth extends React.PureComponent {
     token: PropTypes.string,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired
-    })
+    }),
+    setToken: PropTypes.func.isRequired
   }
   token = null
 
-  render() {
+  render () {
     const {
       token,
       setToken,
@@ -35,9 +36,10 @@ export default class Auth extends React.PureComponent {
         <Row key='text'>
           <Col>
             <p> use <a
-                href={`https://oauth.yandex.ru/authorize?response_type=token&client_id=${YANDEX_OAUTH_CLIENT_ID}`}
-                target="_blank"
-              >auth link</a> to get auth token and put it to field below.
+              href={`https://oauth.yandex.ru/authorize?response_type=token&client_id=${YANDEX_OAUTH_CLIENT_ID}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >auth link</a> to get auth token and put it to field below.
             </p>
           </Col>
         </Row>

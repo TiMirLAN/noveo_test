@@ -31,7 +31,7 @@ export default {
           },
           {
             loader: 'file-loader'
-          },
+          }
         ]
       }
     ]
@@ -48,7 +48,7 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(TEMPLATES_PATH, 'app.html'),
+      template: path.join(TEMPLATES_PATH, 'app.html')
     })
   ],
   devServer: {

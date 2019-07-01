@@ -11,6 +11,7 @@ export default class Fiels extends React.PureComponent {
   static propTypes = {
     files: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     isLoading: PropTypes.bool.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
     ls: PropTypes.func.isRequired,
     match: PropTypes.shape({
       params: PropTypes.shape({
@@ -38,7 +39,7 @@ export default class Fiels extends React.PureComponent {
       history
     } = this.props
 
-    if(!isAuthenticated) {
+    if (!isAuthenticated) {
       history.push('/')
     }
 
@@ -47,7 +48,7 @@ export default class Fiels extends React.PureComponent {
       this.path = path
     }
 
-    if(isLoading) {
+    if (isLoading) {
       return (
         <Row>
           <Col>
@@ -57,7 +58,7 @@ export default class Fiels extends React.PureComponent {
       )
     }
 
-    return chunk(files,3).map((row, index) => (
+    return chunk(files, 3).map((row, index) => (
       <Row key={index}>{row.map(file => (
         <Col xs={12} md={4} key={file.path}>
           <FileItem {...file}/>

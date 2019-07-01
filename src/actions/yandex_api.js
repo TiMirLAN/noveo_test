@@ -1,7 +1,6 @@
 import { setFiles, setLoading } from './files'
 import { DEBUG_TOKEN } from '../../config/defaults'
 
-
 const queryAPI = async (path, queryParams) => {
   const queryString = queryParams
     ? new URLSearchParams(queryParams).toString()

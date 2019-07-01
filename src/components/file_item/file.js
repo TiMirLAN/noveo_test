@@ -3,23 +3,22 @@ import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile } from '@fortawesome/free-solid-svg-icons'
 
-
 const SIZE_SUFFIXES = ['B', 'KB', 'MB', 'GB', 'TB']
 
-function fileSize(size) {
+function fileSize (size) {
   if (size === 0) {
     return '0'
   }
   for (const i in SIZE_SUFFIXES) {
-    if (size < (2**(10*i))) {
-      return `${Math.round(size / (2**((i-1)*10)))}${SIZE_SUFFIXES[i-1]}`
+    if (size < (2 ** (10 * i))) {
+      return `${Math.round(size / (2 ** ((i - 1) * 10)))}${SIZE_SUFFIXES[i - 1]}`
     }
   }
   const l = SIZE_SUFFIXES.length - 1
-  return `${Math.round(size / (2**l))}${SIZE_SUFFIXES[l]}`
+  return `${Math.round(size / (2 ** l))}${SIZE_SUFFIXES[l]}`
 }
 
-const File = ({ name, preview, size }) => (
+const File = ({ name, size }) => (
   <div>
     <FontAwesomeIcon icon={faFile}/>
     &nbsp;
@@ -31,8 +30,7 @@ const File = ({ name, preview, size }) => (
 
 File.propTypes = {
   name: PropTypes.string.isRequired,
-  preview: PropTypes.string
+  size: PropTypes.number.isRequired
 }
 
 export default File
-

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFolder } from '@fortawesome/free-solid-svg-icons'
 
-
 const preparePath = (path) => (
   `/files${path.slice(5)}`
 )
@@ -19,8 +18,7 @@ const Directory = ({ name, path }) => (
 
 Directory.propTypes = {
   name: PropTypes.string.isRequired,
-  preview: PropTypes.string
+  path: PropTypes.string.isRequired
 }
 
-export default Directory 
-
+export default Directory

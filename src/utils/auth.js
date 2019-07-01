@@ -1,18 +1,19 @@
-export function saveAuth(token, expiresIn) {
+export function saveAuth (token, expiresIn) {
   if (typeof localStorage !== 'undefined') {
-    const currentDate = new Date()
     localStorage['authToken'] = token
-//    localStorage['authExpiresIn'] = currentDate+getTime() + (expiresIn * 1000)
+    //    const currentDate = new Date()
+    //    localStorage['authExpiresIn'] = currentDate+getTime() + (expiresIn * 1000)
   }
 }
 
-export function getSavedToken() {
+export function getSavedToken () {
+  // eslint-disable-next-line no-unused-vars
   const { authToken, authExpiresIn } = localStorage
   if (!authToken) {
     return
   }
-//  if (+authExpiresIn <= new Date().getTime()) {
-//    return
-//  }
+  //  if (+authExpiresIn <= new Date().getTime()) {
+  //    return
+  //  }
   return authToken
 }

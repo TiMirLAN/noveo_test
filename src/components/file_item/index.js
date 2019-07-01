@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import File from './file'
 import Directory from './directory'
 
-
 const FileItem = props => {
   switch (props.type) {
     case 'file':
