@@ -13,7 +13,5 @@ module.exports = {
       version: '16.8.6'
     }
   },
-  parser: {
-    'babel-eslint'
-  }
+  parser: 'babel-eslint'
 }
