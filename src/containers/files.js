@@ -30,7 +30,6 @@ function mergeProps (stateProps, dispatchProps, ownProps) {
     history.push('/')
   }
 
-  console.log(ownProps.location, ownProps.match, ownProps.history)
   if (prevPath !== fullPath) {
     if (history.action === 'POP' && state.files) {
       setTimeout(() => {
