@@ -28,6 +28,10 @@ function mergeProps (stateProps, dispatchProps, ownProps) {
 
   if (!token) {
     history.push('/')
+    return {
+      files: [],
+      isLoading: true
+    }
   }
 
   if (prevPath !== fullPath) {
@@ -51,7 +55,6 @@ function mergeProps (stateProps, dispatchProps, ownProps) {
   return {
     files: files.items,
     isLoading: files.isLoading,
-    path: `/${prevPath || ''}`
   }
 }
 
