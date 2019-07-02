@@ -6,7 +6,7 @@ export const setLoading = (value = true) => ({
   value
 })
 
-export const setFiles = (items = []) => ({
+export const setFiles = (data = {}) => ({
   type: SET_FILES,
-  items
+  data
 })

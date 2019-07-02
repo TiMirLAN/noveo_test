@@ -2,7 +2,10 @@ import { SET_LOADING, SET_FILES } from 'actions/files'
 
 const DEFAULT_STATE = {
   isLoading: false,
-  items: []
+  items: [],
+  offset: null,
+  limit: null,
+  total: null
 }
 
 export default (state = DEFAULT_STATE, action) => {
@@ -15,7 +18,7 @@ export default (state = DEFAULT_STATE, action) => {
     case SET_FILES:
       return {
         ...state,
-        items: action.items
+        ...action.data
       }
     default:
       return state

@@ -5,14 +5,14 @@ import Row from 'react-bootstrap/Row'
 import Spinner from 'react-bootstrap/Spinner'
 import chunk from 'lodash/chunk'
 
+import FilesPagination from 'containers/files_pagination'
 import FileItem from './file_item'
 
-export default class Fiels extends React.PureComponent {
+export default class Files extends React.PureComponent {
   static propTypes = {
     files: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     isLoading: PropTypes.bool.isRequired
   }
-  path = null
 
   render () {
     const {
@@ -34,6 +34,8 @@ export default class Fiels extends React.PureComponent {
           <FileItem {...file}/>
         </Col>
       ))}</Row>
-    ))
+    )).concat([
+      <FilesPagination key="pagination" />
+    ])
   }
 }

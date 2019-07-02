@@ -6,10 +6,9 @@ import { setFiles } from 'actions/files'
 
 let prevPath = ''
 
-const mapStateToProps = ({ files: { items, isLoading }, auth: { token } }) => ({
-  files: items,
-  token,
-  isLoading
+const mapStateToProps = ({ files, auth: { token } }) => ({
+  files,
+  token
 })
 
 const mapDispatchToProps = {
@@ -18,34 +17,43 @@ const mapDispatchToProps = {
 }
 
 function mergeProps (stateProps, dispatchProps, ownProps) {
-  const { token, files, isLoading } = stateProps
+  const { token, files } = stateProps
   const { ls, setFiles } = dispatchProps
   const {
     history,
-    location: { state = {} },
+    location: { state = {}, search = '' },
     match: { params, url }
   } = ownProps
+  const fullPath = url + search
 
   if (!token) {
     history.push('/')
   }
 
-  if (history.action === 'POP' && state.files) {
-    setTimeout(() => setFiles(state.files))
-  } else {
-    if (prevPath !== params.path) {
+  console.log(ownProps.location, ownProps.match, ownProps.history)
+  if (prevPath !== fullPath) {
+    if (history.action === 'POP' && state.files) {
+      setTimeout(() => {
+        setFiles(state.files)
+      })
+    } else {
       setTimeout(async () => {
-        const files = await ls(`/${params.path || ''}`)
-        history.replace(url, { files })
+        const offset = new URLSearchParams(search).get('offset')
+        const files = await ls(
+          `/${params.path || ''}`,
+          offset || 0
+        )
+        history.replace(fullPath, { files })
       })
     }
   }
-  prevPath = params.path
+  prevPath = fullPath
 
 
   return {
-    files,
-    isLoading
+    files: files.items,
+    isLoading: files.isLoading,
+    path: `/${prevPath || ''}`
   }
 }
 
