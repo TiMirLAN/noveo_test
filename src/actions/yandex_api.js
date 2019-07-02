@@ -1,7 +1,8 @@
 import { setFiles, setLoading } from './files'
+import { setError } from './error'
 import { DEBUG_TOKEN } from '../../config/defaults'
 
-const FILES_LIMIT = 3
+const FILES_LIMIT = 20
 
 const queryAPI = async (path, queryParams) => {
   const queryString = queryParams
@@ -17,12 +18,17 @@ const queryAPI = async (path, queryParams) => {
 
 export const ls = (path, itemsOffset = 0) => async (dispatch) => {
   dispatch(setLoading())
-  const { _embedded } = await queryAPI('disk/resources', {
-    path,
-    offset: itemsOffset,
-    limit: FILES_LIMIT
-  })
-  dispatch(setLoading(false))
-  dispatch(setFiles(_embedded))
-  return _embedded
+  try {
+    const { _embedded } = await queryAPI('disk/resources', {
+      path,
+      offset: itemsOffset,
+      limit: FILES_LIMIT
+    })
+    dispatch(setFiles(_embedded))
+    return _embedded
+  } catch (e) {
+    dispatch(setError('Yandex API error', e.message))
+  } finally {
+    dispatch(setLoading(false))
+  }
 }
