@@ -21,7 +21,6 @@ function mergeProps (stateProps, dispatchProps, ownProps) {
   }
 }
 
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

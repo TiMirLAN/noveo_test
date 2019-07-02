@@ -48,7 +48,6 @@ function mergeProps (stateProps, dispatchProps, ownProps) {
   }
   prevPath = fullPath
 
-
   return {
     files: files.items,
     isLoading: files.isLoading,
